@@ -1,0 +1,12 @@
+{
+  "name": "Go Devcontainer",
+  "build": {
+    "dockerfile": "../dockerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["golang.go", "ms-azuretools.vscode-docker"]
+    }
+  }
+}

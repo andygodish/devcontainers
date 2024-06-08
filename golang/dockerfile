@@ -1,0 +1,43 @@
+ARG VARIANT=1.22
+FROM golang:${VARIANT}
+
+# Avoid warnings by switching to noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update -y && \
+    apt-get install -y zsh locales bc telnet && \
+    apt-get autoremove -y && \
+    apt-get clean -y && \
+    rm -rf /var/lib/apt/lists/*
+# Switch back to dialog for any ad-hoc use of apt-get
+ENV DEBIAN_FRONTEND=dialog
+
+ENV OHMYZSH_ROOT_DIR=/root
+ENV OHMYZSH_HOME_DIR=/home/
+ENV OHMYZSH_ZPROFILE_DIR=/etc/zsh
+ENV OHMYZSH_INSTALL_DIR=/root/.oh-my-zsh
+
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
+
+# Change default shell to zsh for the root user
+RUN chsh -s $(which zsh) root
+
+# Set the shell to zsh in Dockerfile 
+SHELL ["/bin/zsh", "-c"]
+
+RUN git clone https://github.com/zsh-users/zsh-autosuggestions.git $OHMYZSH_INSTALL_DIR/custom/plugins/zsh-autosuggestions
+RUN git clone https://github.com/zsh-users/zsh-history-substring-search.git $OHMYZSH_INSTALL_DIR/custom/plugins/zsh-history-substring-search
+RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $OHMYZSH_INSTALL_DIR/custom/plugins/zsh-syntax-highlighting
+
+COPY .zshrc $OHMYZSH_ROOT_DIR/ 
+
+RUN go install golang.org/x/tools/cmd/godoc@latest
+RUN go install github.com/kisielk/errcheck@latest
+RUN go install -v golang.org/x/tools/gopls@latest
+# For running the debug feature in VSCode 
+RUN go install -v github.com/go-delve/delve/cmd/dlv@latest
+
+EXPOSE 8080
+
+CMD ["zsh"]
+
+
