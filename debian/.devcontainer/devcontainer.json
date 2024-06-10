@@ -1,5 +1,5 @@
 {
-  "name": "Go Devcontainer",
+  "name": "Debian 12-slim Devcontainer",
   "build": {
     "dockerfile": "../dockerfile",
     "context": ".."
