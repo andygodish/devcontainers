@@ -4,7 +4,9 @@ FROM golang:${VARIANT}
 # Avoid warnings by switching to noninteractive
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y && \
-    apt-get install -y zsh telnet && \
+    apt-get install -y \
+      telnet \
+      zsh && \
     apt-get autoremove -y && \
     apt-get clean -y && \
     rm -rf /var/lib/apt/lists/*
@@ -12,8 +14,6 @@ RUN apt-get update -y && \
 ENV DEBIAN_FRONTEND=dialog
 
 ENV OHMYZSH_ROOT_DIR=/root
-ENV OHMYZSH_HOME_DIR=/home/
-ENV OHMYZSH_ZPROFILE_DIR=/etc/zsh
 ENV OHMYZSH_INSTALL_DIR=/root/.oh-my-zsh
 
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
