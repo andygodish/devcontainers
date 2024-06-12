@@ -1,5 +1,5 @@
 {
-  "name": "Terraform Devcontainer",
+  "name": "Terraform Devcontainer for Azure",
   "build": {
     "dockerfile": "../dockerfile",
     "context": ".."
@@ -7,9 +7,7 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "bridgecrew.checkov",
-        "hashicorp.terraform", 
-        "hashicorp.hcl"
+        "ms-azuretools.vscode-azureterraform"
       ]
     }
   }
