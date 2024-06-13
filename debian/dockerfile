@@ -8,6 +8,7 @@ RUN apt-get update -y && \
     apt-get install -y \
       curl \
       git \
+      jq \
       telnet \
       zsh && \
     apt-get autoremove -y && \

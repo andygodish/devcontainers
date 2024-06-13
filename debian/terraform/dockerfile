@@ -7,6 +7,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y && \
     apt-get install -y \
       gnupg \
+      python3 \
+      python3-pip \
       software-properties-common && \
     apt-get autoremove -y && \
     apt-get clean -y && \
@@ -27,8 +29,9 @@ RUN echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] http
 # Update and install Terraform
 RUN apt-get update -y && \
     apt-get install -y terraform
-
-# Clean up
 RUN rm -rf /var/lib/apt/lists/*
 
 RUN terraform -install-autocomplete
+
+# Install checkov (requires python & pip)
+RUN pip3 install checkov --break-system-packages
