@@ -1,0 +1,20 @@
+ARG VARIANT=12-slim
+FROM devcontainer-terraform:${VARIANT}
+
+# Avoid warnings by switching to noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update -y && \
+    apt-get install -y \
+      groff && \
+    apt-get autoremove -y && \
+    apt-get clean -y && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+RUN unzip awscliv2.zip
+
+RUN ./aws/install
+
+RUN aws --version

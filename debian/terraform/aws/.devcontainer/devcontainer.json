@@ -1,0 +1,12 @@
+{
+  "name": "Terraform Devcontainer for AWS",
+  "build": {
+    "dockerfile": "../dockerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": []
+    }
+  }
+}
