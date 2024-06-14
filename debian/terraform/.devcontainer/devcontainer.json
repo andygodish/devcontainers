@@ -8,6 +8,7 @@
     "vscode": {
       "extensions": [
         "bridgecrew.checkov",
+        "erd0s.terraform-autocomplete",
         "hashicorp.terraform", 
         "hashicorp.hcl"
       ]
