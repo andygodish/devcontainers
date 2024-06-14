@@ -6,7 +6,9 @@
   },
   "customizations": {
     "vscode": {
-      "extensions": []
+      "extensions": [
+        "erd0s.terraform-autocomplete"
+      ]
     }
   }
 }
