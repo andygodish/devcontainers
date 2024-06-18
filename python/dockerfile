@@ -1,0 +1,52 @@
+ARG VARIANT=3.12-slim-bookworm
+FROM python:${VARIANT}
+
+# Avoid warnings by switching to noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update -y && \
+    apt-get install -y \
+      curl \
+      git \
+      jq \
+      telnet \
+      unzip \
+      zsh && \
+    apt-get autoremove -y && \
+    apt-get clean -y && \
+    rm -rf /var/lib/apt/lists/*
+
+# Switch back to dialog for any ad-hoc use of apt-get
+ENV DEBIAN_FRONTEND=dialog
+
+ENV OHMYZSH_ROOT_DIR=/root
+ENV OHMYZSH_INSTALL_DIR=/root/.oh-my-zsh
+
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
+
+# Change default shell to zsh for the root user
+RUN chsh -s $(which zsh) root
+
+# Set the shell to zsh in Dockerfile 
+SHELL ["/bin/zsh", "-c"]
+
+RUN git clone https://github.com/zsh-users/zsh-autosuggestions.git $OHMYZSH_INSTALL_DIR/custom/plugins/zsh-autosuggestions
+RUN git clone https://github.com/zsh-users/zsh-history-substring-search.git $OHMYZSH_INSTALL_DIR/custom/plugins/zsh-history-substring-search
+RUN git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $OHMYZSH_INSTALL_DIR/custom/plugins/zsh-syntax-highlighting
+
+COPY .zshrc $OHMYZSH_ROOT_DIR/ 
+
+# Docker CLI Installation
+RUN install -m 0755 -d /etc/apt/keyrings
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+RUN chmod a+r /etc/apt/keyrings/docker.asc
+
+RUN echo \                                                                                 
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+    tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+RUN apt-get update && apt-get install -y docker-ce-cli
+RUN rm -rf /var/lib/apt/lists/* 
+
+CMD ["zsh"]

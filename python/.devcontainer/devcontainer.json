@@ -1,0 +1,12 @@
+{
+  "name": "Python Debian-slim Devcontainer",
+  "build": {
+    "dockerfile": "../dockerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-azuretools.vscode-docker", "ms-vscode.makefile-tools"]
+    }
+  }
+}

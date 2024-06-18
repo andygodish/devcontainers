@@ -1,0 +1,12 @@
+{
+  "name": "Ansible Devcontainer",
+  "build": {
+    "dockerfile": "../dockerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["redhat.ansible"]
+    }
+  }
+}
