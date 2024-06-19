@@ -7,7 +7,8 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "ms-azuretools.vscode-azureterraform"
+        "ms-azuretools.vscode-azureterraform",
+        "laszer25.terraform-azure-autocomplete"
       ]
     }
   }
