@@ -1,0 +1,15 @@
+{
+  "name": "Terraform Devcontainer",
+  "build": {
+    "dockerfile": "../dockerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.csharp"
+      ]
+    }
+  }
+}

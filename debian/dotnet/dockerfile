@@ -1,0 +1,20 @@
+ARG VARIANT=12-slim
+FROM devcontainer-debian:${VARIANT}
+
+# Avoid warnings by switching to noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+     dpkg -i packages-microsoft-prod.deb && \
+     rm packages-microsoft-prod.deb
+
+RUN apt-get update -y && \
+    apt-get install -y \
+      dotnet-sdk-8.0 \
+      aspnetcore-runtime-8.0 && \
+    apt-get autoremove -y && \
+    apt-get clean -y && \
+    rm -rf /var/lib/apt/lists/*
+
+# Switch back to dialog for any ad-hoc use of apt-get
+ENV DEBIAN_FRONTEND=dialog
