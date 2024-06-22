@@ -11,6 +11,7 @@ RUN apt-get update -y && \
       jq \
       telnet \
       unzip \
+      wget \
       zsh && \
     apt-get autoremove -y && \
     apt-get clean -y && \
