@@ -8,6 +8,8 @@ RUN apt-get update -y && \
     apt-get install -y \
       curl \
       git \
+      iproute2 \
+      iputils-ping \
       jq \
       telnet \
       unzip \
