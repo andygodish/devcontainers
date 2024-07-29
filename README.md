@@ -6,7 +6,7 @@ Each dir at the root of this repo represent a base image that subsequent dirs in
 
 ## Quickstart
 
-**Requirements:** docker
+**Requirements:** just docker
 
 1. Build the image from the dockerfile in the root of this repo. This node base image contains the devcontainer and docker cli tools.
 
