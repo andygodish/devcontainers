@@ -11,13 +11,15 @@ Each dir at the root of this repo represent a base image that subsequent dirs in
 1. Build the image from the dockerfile in the root of this repo. This node base image contains the devcontainer and docker cli tools.
 
 ```
-docker build -t devcontainer .
+sh ./build.sh
 ```
+
+This will produce a local image named `devcontainer-builder`.
 
 2. Launch a container using the above image build making sure to mount this repo and your local docker socket, allowing the container to communicate with your local machine's docker daemon. 
 
 ```
-docker run -it -v $PWD:/work -v /var/run/docker.sock:/var/run/docker.sock devcontainer /bin/bash
+docker run -it -v $PWD:/work -v /var/run/docker.sock:/var/run/docker.sock devcontainer-builder /bin/bash
 ```
 
 3. Build a devcontainer using the devcontainer cli tool.
