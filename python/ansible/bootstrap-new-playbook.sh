@@ -1,19 +1,14 @@
 #!/bin/bash
 
-if [ -z "$ANSIBLE_PLAYBOOK_NAME" ]; then
-  echo "ANSIBLE_PLAYBOOK_NAME environment variable is not set. Exiting..."
-  exit 1
-else
-  echo "Creating Ansible playbook named: $ANSIBLE_PLAYBOOK_NAME"
-  mkdir -p $ANSIBLE_PLAYBOOK_NAME/inventory
-  mkdir $ANSIBLE_PLAYBOOK_NAME/roles
-  mkdir $ANSIBLE_PLAYBOOK_NAME/collections
+cp /config/ansible.cfg .
+cp /config/hosts.example.yaml ./inventory.yaml
 
-  echo "---" > $ANSIBLE_PLAYBOOK_NAME/main.yaml
-  echo "- name: $ANSIBLE_PLAYBOOK_NAME" >> $ANSIBLE_PLAYBOOK_NAME/main.yaml
-  echo "  hosts: all" >> $ANSIBLE_PLAYBOOK_NAME/main.yaml
-  echo "  become: true" >> $ANSIBLE_PLAYBOOK_NAME/main.yaml
+mkdir ./collections
+mkdir ./playbooks
+mkdir ./roles
 
-  cp /config/ansible.cfg /app/$ANSIBLE_PLAYBOOK_NAME
-  cp /config/hosts.ini.example /app/$ANSIBLE_PLAYBOOK_NAME/inventory/hosts.ini
-fi
+echo "---" > ./playbooks/main.yaml
+echo "- name: playbook" >> ./playbooks/main.yaml
+echo "  hosts: all" >> ./playbooks/main.yaml
+echo "  become: true" >> ./playbooks/main.yaml
+

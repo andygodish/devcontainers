@@ -19,7 +19,7 @@ RUN mkdir /scripts
 RUN mkdir /config 
 
 COPY ./ansible.cfg /config
-COPY ./hosts.ini.example /config
+COPY ./hosts.example.yaml /config
 COPY ./bootstrap-new-playbook.sh /scripts
 
 RUN chmod +x /scripts/bootstrap-new-playbook.sh
