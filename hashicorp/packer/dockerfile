@@ -1,0 +1,10 @@
+FROM hashicorp/packer:1.11
+
+WORKDIR /work
+
+RUN apk --no-cache update && \
+    apk --no-cache upgrade && \
+    apk --no-cache add make && \
+    rm -rf /var/cache/apk/*
+
+COPY ./proxmox .
