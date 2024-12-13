@@ -26,6 +26,11 @@ ENV OHMYZSH_INSTALL_DIR=/root/.oh-my-zsh
 
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
 
+# Install SOPS
+RUN SOPS_VERSION=$(curl -s "https://api.github.com/repos/getsops/sops/releases/latest" | grep -Po '"tag_name": "v\K[0-9.]+') && \
+    curl -L "https://github.com/mozilla/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux.amd64" -o /usr/local/bin/sops && \
+    chmod +x /usr/local/bin/sops
+
 # Change default shell to zsh for the root user
 RUN chsh -s $(which zsh) root
 
