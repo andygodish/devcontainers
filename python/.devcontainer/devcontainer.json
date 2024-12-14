@@ -6,7 +6,11 @@
   },
   "customizations": {
     "vscode": {
-      "extensions": ["ms-azuretools.vscode-docker", "ms-vscode.makefile-tools"]
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "ms-vscode.makefile-tools",
+        "signageos.signageos-vscode-sops"
+      ]
     }
   }
 }
