@@ -28,6 +28,7 @@ RUN pip install pip --upgrade
 
 # --user configures for the current user instead of root: "pip install --user ansible"
 RUN pip install ansible
+RUN pip install ansible-lint
 
 # ENV PATH="/home/appuser/.local/bin:${PATH}"
 
