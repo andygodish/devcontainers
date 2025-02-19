@@ -2,7 +2,7 @@
 
 A single repo containing the "base" dockerfiles for building out dev environments inside containers. These are built specifically for VSCode Dev Containers. 
 
-Each dir at the root of this repo represent a base image that subsequent dirs in the tree then use as a base image. These base images (as definined in the associated `dockerfile`) contain an ever-growing list of cli tools as well as a base installation of ohmyzsh to make for a slick dev experience inside of the container.
+Each dir at the root of this repo represent a base image that subsequent dirs in the tree then use as a base image. These base images (as definined in the associated `dockerfile`) contain an ever-growing list of cli tools as well as a base installation of ohmyzsh to make for a slick(er) dev experience inside of the container.
 
 ## Quickstart
 

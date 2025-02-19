@@ -1,5 +1,5 @@
-ARG VARIANT=3.12-slim-bookworm
-FROM devcontainer-python:3.12-slim-bookworm
+ARG VARIANT=3.13-slim-bookworm
+FROM devcontainer-python:3.13-slim-bookworm
 
 # Avoid warnings by switching to noninteractive
 ENV DEBIAN_FRONTEND=noninteractive
