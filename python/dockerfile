@@ -1,5 +1,5 @@
 ARG VARIANT=3.12-slim-bookworm
-FROM python@${VARIANT}
+FROM python:${VARIANT}
 
 # Avoid warnings by switching to noninteractive
 ENV DEBIAN_FRONTEND=noninteractive
