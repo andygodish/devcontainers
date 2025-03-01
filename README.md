@@ -74,5 +74,3 @@ You should now be able to run this container from an interactive terminal and se
 ```
 docker run -it devcontainer-debian:12-slim
 ```
-
-
