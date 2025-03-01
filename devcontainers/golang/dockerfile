@@ -1,4 +1,4 @@
-ARG VARIANT=1.22
+ARG VARIANT=1.24
 FROM golang:${VARIANT}
 
 # Avoid warnings by switching to noninteractive
