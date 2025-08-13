@@ -1,4 +1,4 @@
-ARG VARIANT=12-slim
+ARG VARIANT=13-slim
 FROM debian:${VARIANT}
 
 # Avoid warnings by switching to noninteractive
